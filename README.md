@@ -1,39 +1,62 @@
 # SPEC2MODEL Challenge
 
-**Organized by [GDGOC Silicon University](https://github.com/GDGOC-SiliconUniversity)**
+**Organized by [GDGOC Silicon University](https://github.com/GDGOC-SiliconUniversity) | Zygon x Neosis Annual Fest**
 
 ---
 
 ### What Is This?
 
-You get a **problem statement**, a **feature schema**, and a **training dataset**. Your job: clean the data, engineer features, build a model, and predict labels on a hidden test set.
+A machine learning competition where you get a **problem statement**, a **feature schema**, and a **training dataset**. Your job: clean the data, engineer features, build a model, and predict labels on a hidden test set.
 
-### Event Structure
+No hand-holding. No perfect data. Real ML engineering.
+
+### Timeline
 
 | When | What You Get |
 |------|-------------|
-| **12 hrs before** | Problem statements, feature schemas, dummy test data, rules |
-| **Event start** | Training dataset (2000-5000 rows with labels) |
-| **T + 4:30** | Final test dataset (500-700 rows, NO labels) |
-| **T + 5:00** | Submission deadline |
+| **12 hrs before event** | Problem statements, feature schemas, dummy test data (50-100 rows with labels), submission sheet, rules |
+| **Event start (T+0:00)** | Training dataset (2000-5000 rows with labels) — this is when building begins |
+| **T+4:30** | Final test dataset (500-700 rows, NO labels) |
+| **T+5:00** | Submission deadline |
 
 ### Problems
 
-Two problem statements are available. **Pick one.**
+Two problems. **Pick one.**
 
-- [`problems/problem_A/`](problems/problem_A/) — Problem A statement, schema, and data
-- [`problems/problem_B/`](problems/problem_B/) — Problem B statement, schema, and data
+| | Problem A | Problem B |
+|---|---|---|
+| **Name** | [Late Delivery Prediction](problems/problem_A/PROBLEM.md) | [App Churn Reason Classification](problems/problem_B/PROBLEM.md) |
+| **Type** | Binary classification | Multiclass classification (4 classes) |
+| **Features** | 17 | 28 |
+| **Difficulty** | Accessible — clear patterns, fewer features | Harder — overlapping classes, fuzzy boundaries |
+| **Good for** | All skill levels | Teams wanting a challenge |
 
 ### Evaluation
 
-| Component | Weight |
-|-----------|--------|
-| Model performance (Macro F1 on hidden test set) | 50% |
-| Professor viva (live Q&A on your approach) | 50% |
+| Component | Weight | Method |
+|-----------|--------|--------|
+| Model performance | **50%** | Automated — Macro F1 on hidden test set |
+| Professor viva | **50%** | Live Q&A — explain your approach, decisions, code |
+
+**Cross-problem scoring:** Raw F1 scores are NOT compared across problems. Your model score is calculated relative to the best F1 within your chosen problem:
+
+```
+Model Score = (Your F1 / Best F1 in your problem) × 50
+```
+
+This ensures teams picking the harder Problem B are not disadvantaged.
+
+### External Data Policy
+
+- **Allowed.** You may use any publicly available data to supplement the provided training set.
+- **Must be relevant** to the problem statement.
+- **Must be cited** in your submission sheet — source name, URL, and why you used it.
+- **Not required.** You can score well using only the provided data if you clean and engineer it properly.
+- **Caution:** The final test set follows the same distribution as the provided training data. External data that doesn't match this distribution may hurt rather than help.
 
 ### How to Submit
 
-See **[SUBMISSIONS.md](SUBMISSIONS.md)** for full instructions.
+See **[SUBMISSIONS.md](SUBMISSIONS.md)**.
 
 ### Repo Structure
 
@@ -43,36 +66,32 @@ spec2model/
 ├── SUBMISSIONS.md
 ├── problems/
 │   ├── problem_A/
-│   │   ├── PROBLEM.md          # Problem statement + schema
-│   │   ├── dummy_test.csv      # 50-100 rows, with labels (pre-release)
-│   │   └── train.csv           # Training data (released at event start)
+│   │   ├── PROBLEM.md            # Problem statement + full schema
+│   │   ├── dummy_test.csv        # 50-100 rows, with labels (pre-release)
+│   │   └── train.csv             # Training data (released at event start)
 │   └── problem_B/
 │       ├── PROBLEM.md
 │       ├── dummy_test.csv
 │       └── train.csv
 ├── submissions/
-│   └── team_name/              # Your team's folder
+│   └── team_name/                # Your team's folder
 │       ├── predictions.csv
-│       ├── code/
-│       └── submission_sheet.pdf
+│       ├── submission_sheet.pdf
+│       └── code/
 └── evaluation/
-    └── final_test.csv          # Released at T+4:30
+    ├── final_test_A.csv          # Released at T+4:30
+    └── final_test_B.csv
 ```
 
 ### Rules
 
-- **External data is allowed** — must be relevant to the problem and cited in your submission sheet
-- **Any ML library is allowed** — scikit-learn, XGBoost, PyTorch, TensorFlow, etc.
-- **No pre-trained models on the exact task** — general libraries and tools are fine
-- **All team members must be able to explain the code** during the viva
+- **External data allowed** — must be relevant and cited
+- **Any ML library allowed** — scikit-learn, XGBoost, PyTorch, TensorFlow, LightGBM, CatBoost, etc.
+- **No pre-trained models on the exact task** — general-purpose libraries and tools are fine
+- **All team members must explain the code** individually during viva
 - **Deadline is final** — PR timestamp is the official submission time
-
-### Links
-
-- [Submission Guide](SUBMISSIONS.md)
-- [Problem A](problems/problem_A/PROBLEM.md)
-- [Problem B](problems/problem_B/PROBLEM.md)
+- **predictions.csv format must match exactly** — see your problem's PROBLEM.md for exact class labels
 
 ---
 
-*SPEC2MODEL Challenge — GDGOC Silicon University*
+*SPEC2MODEL Challenge — GDGOC Silicon University — Zygon x Neosis Annual Fest*
